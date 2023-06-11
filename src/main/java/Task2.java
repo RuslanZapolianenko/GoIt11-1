@@ -1,23 +1,22 @@
-
-    import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
-    public class Task2 {
-        public static List<String> sortAndUpperCase(List<String> strings) {
-            List<String> result = new ArrayList<>(strings);
-            for (int i = 0; i < result.size(); i++) {
-                result.set(i, result.get(i).toUpperCase());
-            }
-            Collections.sort(result, Collections.reverseOrder());
-            return result;
-        }
-
-        public static void main(String[] args) {
-            List<String> strings = List.of("Ivan", "John", "Peter", "Alice", "Michael");
-            List<String> sortedStrings = sortAndUpperCase(strings);
-            System.out.println(sortedStrings);
-        }
+public class Task2 {
+    public static void main(String[] args) {
+        List<String> strings = Arrays.asList("Ivan", "Peter", "John", "Alice", "David","Kris");
+        List<String> result = sortAndToUpper(strings);
+        System.out.println(result);
     }
 
+    public static List<String> sortAndToUpper(List<String> strings) {
+        return strings.stream()
+                .map(String::toUpperCase)
+                .sorted(Comparator.reverseOrder())
+                .collect(Collectors.toList());
+    }
+}
 
+//Метод принимает на вход список из строк (можно список из Задания 1).
+// Возвращает список этих строк в верхнем регистре и отсортированные по убыванию (от Z до А).
